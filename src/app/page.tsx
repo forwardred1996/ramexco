@@ -128,19 +128,6 @@ const About = () => {
             <img src="/about-2.jpg" alt="" className={'rounded object-cover w-full'}/>
         </div>
     </Container>
-        <div className={'py-10 font-medium text-2xl'}>
-            <Container
-                className={'rounded-lg bg-slate-100 py-10 px-10 text-lg bg-gradient-to-br from-amber-100 to-emerald-100'}>
-                <BulbIcon className={'fill-yellow-500 mb-4 w-16 h-16'}/>
-                <p>RamexCo named after the ancient river that has flowed through various civilizations throughout history.
-                    symbolizes our principles of transparency, fluency, and dynamism and versatility. Like the clear
-                    waters
-                    revealing the riverbed below, we ensure transparency in all our
-                    processes. Our operations flow as seamlessly as the river’s currents, dynamically adapting to every
-                    challenge. Just as RamexCo moves purposefully toward the sea, we are driven toward the sea of success,
-                    delivering excellence with every shipment</p>
-            </Container>
-        </div>
     </div>
 }
 
