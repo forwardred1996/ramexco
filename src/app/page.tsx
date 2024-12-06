@@ -1,13 +1,8 @@
 "use client";
 
-import {ReactNode, useState} from "react";
+import React, {ReactNode, useState} from "react";
 import PulsatingButton from "@/components/ui/pulsating-button";
-import {
-    DrawerBody,
-    DrawerContent,
-    DrawerRoot,
-    DrawerTrigger
-} from "@/components/ui/drawer";
+import {DrawerBody, DrawerContent, DrawerRoot, DrawerTrigger} from "@/components/ui/drawer";
 
 export default function Page() {
     return (
@@ -15,24 +10,44 @@ export default function Page() {
             <Nav/>
             <Home/>
             <About/>
-            <Naming/>
+            <Banner src={'/banners-1.png'}/>
             <Services/>
+            <Banner src={'/banners-2.jpg'}/>
             <GlobalNetwork/>
             <ContactUs/>
         </div>
     );
 }
 
-
-const ContactItem = ({title, icon, className}: { title: string, icon: ReactNode, className: string }) => {
-    return <div className={`px-8 py-3 rounded-lg flex items-center justify-center space-x-6  ${className}`}>
-        {icon}
-        <div className={'uppercase text-2xl text-white font-semibold text-center'}>{title}</div>
+const Banner = ({src}: { src: string }) => {
+    return <div>
+        <img className={'hidden lg:block object-cover w-full aspect-[4]'} src={src} alt=""/>
+        <Container>
+            <img className={'block lg:hidden object-cover w-full aspect-[3] rounded-lg'} src={src} alt=""/>
+        </Container>
     </div>
+}
+
+
+const ContactItem = ({title, platform, icon, className, href}: {
+    title: string,
+    platform: string,
+    icon: ReactNode,
+    className: string,
+    href: string
+}) => {
+    return <a href={href}
+              className={`px-8 py-3 rounded-lg flex items-center justify-between space-x-6 hover:scale-105 transition-all duration-75  ${className}`}>
+        <div>
+            <div className={'uppercase text-lg text-white'}>{platform}</div>
+            <div className={'uppercase text-2xl text-white font-semibold text-center'}>{title}</div>
+        </div>
+        {icon}
+    </a>
 }
 const ContactUs = () => {
     return <div id={'contact-us'} className={'py-32  bg-blue-50'}>
-        <Container className={'grid grid-cols-2 xl:grid-cols-3 gap-20'}>
+        <Container className={'gap-20 items-center'}>
             <div className={'col-span-2'}>
                 <h2 className={"text-7xl font-light uppercase"}>
                     Contact Us
@@ -40,32 +55,29 @@ const ContactUs = () => {
                 <div className={'font-medium text-2xl my-10'}>
                     <p>Get in touch with us today!</p>
                     <p>
-                        You can reach us via email at <b className={'font-bold'}>info@hatke.org</b>, call us at <b
-                        className={'font-bold'}>+98 9120 180 150</b>
+                        You can reach us via email at <b className={'font-bold inline-block bg-blue-300 rounded px-2 py-1'}>info@ramexco.com</b>
+                    </p>
+                    <p className={'mt-4'}>
+                        For any inquiries or issues related to our mail server, including abuse, technical support, or other concerns, please contact us at <b className={'font-bold inline-block bg-rose-400 rounded px-2 py-1'}>postmaster@ramexco.com</b>.
                     </p>
                 </div>
-            </div>
-            <div className="col-span-2 xl:col-span-1 flex flex-col space-y-6">
-                <ContactItem title={'Telegram'} icon={<Telegram/>} className={'bg-blue-500'}/>
-                <ContactItem title={'WhatsApp'} icon={<Whatsapp/>} className={'bg-green-500'}/>
-                <ContactItem title={'Wechat'} icon={<Wechat/>} className={'bg-sky-500'}/>
             </div>
         </Container>
     </div>
 }
 
 const Services = () => {
-    return <div id={'services'} className={'py-32 bg-blue-50'}>
+    return <div id={'services'} className={'py-32'}>
         <Container>
             <h2 className={"text-7xl font-light uppercase"}>
                 Our Services
             </h2>
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 my-20">
-                <ServiceItem title={'Sea Freight'} icon={<SeaIcon/>}/>
-                <ServiceItem title={'Air Cargo'} icon={<SkyIcon/>}/>
-                <ServiceItem title={'Land Transport'} icon={<LandIcon/>}/>
-                <ServiceItem title={'customs brokerage'} icon={<CalcIcon/>}/>
-                <ServiceItem title={'logistics consultancy'} icon={<ShakeIcon/>}/>
+            <div className="grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-5 my-20 bg-slate-300 border gap-[1px] border-slate-300">
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Sea Freight'} icon={<SeaIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Air Cargo'} icon={<SkyIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Land Transport'} icon={<LandIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'} title={'customs brokerage'} icon={<CalcIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'} title={'logistics consultancy'} icon={<ShakeIcon/>}/>
             </div>
             <div className={'font-medium text-2xl my-10'}>
                 Our diverse range of services includes sea freight, land transport, air cargo, customs brokerage, and
@@ -83,12 +95,12 @@ const GlobalNetwork = () => {
                 Global Network
             </h2>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-10 my-20">
-                <NetworkItem title={'Middle East'} icon={<img src={'/hatke/middle-east.png'}/>}/>
-                <NetworkItem title={'China'} icon={<img src={'/hatke/china.png'}/>}/>
-                <NetworkItem title={'SE Asia'} icon={<img src={'/hatke/sea.png'}/>}/>
+                <NetworkItem title={'Middle East'} icon={<img src={'/middle-east.png'}/>}/>
+                <NetworkItem title={'China'} icon={<img src={'/china.png'}/>}/>
+                <NetworkItem title={'SE Asia'} icon={<img src={'/sea.png'}/>}/>
             </div>
             <div className={'font-medium text-2xl my-10'}>
-                With key hubs in strategic locations in Middle East, China and SE Asia, Hatke Global Logistics ensures
+                With key hubs in strategic locations in Middle East, China and SE Asia, RamexCo Global Logistics ensures
                 your cargo reaches its destination smoothly and on time. Explore our global network and see how we
                 connect the world through seamless logistics solutions.
             </div>
@@ -104,43 +116,47 @@ const NetworkItem = ({title, icon}: { title: string, icon: ReactNode }) => {
 }
 
 
-const ServiceItem = ({title, icon}: { title: string, icon: ReactNode }) => {
+const ServiceItem = ({className= '', title, icon}: {className?: string, title: string, icon: ReactNode }) => {
     return <div
-        className={'bg-white rounded shadow-2xl aspect-square p-6 flex flex-col items-center justify-center space-y-6'}>
+        className={`relative bg-white p-6 flex flex-col items-center justify-center space-y-6 ${className}`}>
         {icon}
-        <div className={'uppercase text-3xl text-center'}>{title}</div>
+        <div className={'uppercase text-2xl text-center'}>
+            {title}</div>
     </div>
 }
 
-const Naming = () => {
-    return <div className={'py-20 bg-blue-500 text-white font-medium text-2xl'}>
-        <Container>
-            Hatke, named after the river that nurtures our ancestral village, symbolizes our principles of transparency,
-            fluency, and dynamism. Like the clear waters revealing the riverbed below, we ensure transparency in all our
-            processes. Our operations flow as seamlessly as the river’s currents, dynamically adapting to every
-            challenge. Just as Hatke moves purposefully toward the sea, we are driven toward the sea of success,
-            delivering excellence with every shipment
-        </Container>
-    </div>
-}
 
 const About = () => {
-    return <div id={'about'}><Container className={'grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-20 py-32 items-center'}>
+    return <div className={'py-32'} id={'about'}><Container
+        className={'grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-20 items-center'}>
         <div className={'col-span-2 space-y-10'}>
             <h2 className={"text-7xl font-light uppercase"}>
-                About Hatke
+                About RamexCo
             </h2>
             <p className={"font-medium text-2xl my-10"}>
-                Established with a vision to transform the transportation industry, Hatke Global Logistics offers
+                Established with a vision to transform the transportation industry, RamexCo Global Logistics offers
                 unparalleled expertise and a commitment to excellence. Our mission is to provide transparent, dynamic,
                 and efficient logistics solutions, ensuring our clients needs are met with utmost precision.
             </p>
         </div>
         <div className={'grid grid-cols-1 col-span-2 md:col-span-1 gap-5'}>
-            <img src="/hatke/about-1.jpg" alt="" className={'rounded object-cover w-full'}/>
-            <img src="/hatke/about-2.jpg" alt="" className={'rounded object-cover w-full'}/>
+            <img src="/about-1.jpg" alt="" className={'rounded object-cover w-full'}/>
+            <img src="/about-2.jpg" alt="" className={'rounded object-cover w-full'}/>
         </div>
     </Container>
+        <div className={'py-10 font-medium text-2xl'}>
+            <Container
+                className={'rounded-lg bg-slate-100 py-10 px-10 text-lg bg-gradient-to-br from-amber-100 to-emerald-100'}>
+                <BulbIcon className={'fill-yellow-500 mb-4 w-16 h-16'}/>
+                <p>RamexCo named after the ancient river that has flowed through various civilizations throughout history.
+                    symbolizes our principles of transparency, fluency, and dynamism and versatility. Like the clear
+                    waters
+                    revealing the riverbed below, we ensure transparency in all our
+                    processes. Our operations flow as seamlessly as the river’s currents, dynamically adapting to every
+                    challenge. Just as RamexCo moves purposefully toward the sea, we are driven toward the sea of success,
+                    delivering excellence with every shipment</p>
+            </Container>
+        </div>
     </div>
 }
 
@@ -149,7 +165,7 @@ const Home = () => {
         <div id={'home'} className={"w-full overflow-hidden relative"}>
             <Container className={"text-center py-20 z-10 relative"}>
                 <h2 className={"text-center text-6xl font-bold my-20"}>
-                    Welcome to Hatke Global Logistics!
+                    Welcome to RamexCo Global Logistics!
                 </h2>
                 <p className={"font-medium text-2xl md:px-10 xl:px-32 leading-loose my-10"}>
                     We provide seamless and reliable transportation solutions across sea, land, and air. Discover
@@ -162,7 +178,7 @@ const Home = () => {
                         Us</PulsatingButton>
                 </div>
             </Container>
-            <img className={"w-full h-full scale-[1.2] object-cover blur absolute left-0 top-0"} src={"/hatke/banner.jpg"}/>
+            <img className={"w-full h-full scale-[1.2] object-cover blur absolute left-0 top-0"} src={"/banner.jpg"}/>
 
         </div>
     )
@@ -206,7 +222,9 @@ const MobileNav = () => {
 const Nav = () => (
     <div>
         <Container className='flex items-center justify-between h-[154px]'>
-            <div className={"font-bold text-2xl"}>Hatke Global Logistics</div>
+            <div className="flex items-center space-x-2">
+                <img src="/remaxco-logo.jpg" alt="" className={'h-16 object-cover'}/>
+            </div>
             <div className={"hidden lg:flex items-center space-x-10"}>
                 <NavItem href={'#home'}>Home</NavItem>
                 <NavItem href={'#about'}>About</NavItem>
@@ -290,10 +308,32 @@ const Telegram = () => {
 
 }
 
+const Email = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFF" viewBox="0 0 256 256">
+        <path
+            d="M128,24a104,104,0,0,0,0,208c21.51,0,44.1-6.48,60.43-17.33a8,8,0,0,0-8.86-13.33C166,210.38,146.21,216,128,216a88,88,0,1,1,88-88c0,26.45-10.88,32-20,32s-20-5.55-20-32V88a8,8,0,0,0-16,0v4.26a48,48,0,1,0,5.93,65.1c6,12,16.35,18.64,30.07,18.64,22.54,0,36-17.94,36-48A104.11,104.11,0,0,0,128,24Zm0,136a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path>
+    </svg>
+
+}
+
+const Phone = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFF" viewBox="0 0 256 256">
+        <path
+            d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"></path>
+    </svg>
+}
+
 const MenuIcon = () => {
     return <svg className={'w-10 h-10'} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#000000"
                 viewBox="0 0 256 256">
         <path
             d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"></path>
+    </svg>
+}
+
+const BulbIcon = (props: any) => {
+    return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+        <path
+            d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-50.34,2.34a8,8,0,0,0-11.32,0L128,132.69l-26.34-26.35a8,8,0,0,0-11.32,11.32L120,147.31V184a8,8,0,0,0,16,0V147.31l29.66-29.65A8,8,0,0,0,165.66,106.34Z"></path>
     </svg>
 }
