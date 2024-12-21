@@ -7,16 +7,38 @@ import {DrawerBody, DrawerContent, DrawerRoot, DrawerTrigger} from "@/components
 export default function Page() {
     return (
         <div className={'leading-loose'}>
-            <Nav/>
-            <Home/>
-            <About/>
-            <Banner src={'/banners-1.png'}/>
-            <Services/>
-            <Banner src={'/banners-2.jpg'}/>
-            <GlobalNetwork/>
+            {/*<Nav/>*/}
+            <WIP/>
+            {/*<Home/>*/}
+            {/*<About/>*/}
+            {/*<Banner src={'/banners-1.png'}/>*/}
+            {/*<Services/>*/}
+            {/*<Banner src={'/banners-2.jpg'}/>*/}
+            {/*<GlobalNetwork/>*/}
             <ContactUs/>
         </div>
     );
+}
+
+const WIP = () => {
+    return <div>
+        <div className={'flex items-center justify-center p-10'}>
+            <img src="/remaxco-logo.jpg" alt="" className={'h-16 lg:h-30 object-cover'}/>
+        </div>
+        <div className={'bg-sky-100 to-amber-200 w-full min-h-[40vh] lg:min-h-[80vh] py-12 flex items-center justify-center'}>
+            <div>
+                <svg className={'mx-auto w-48 h-48'} xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                     fill="#000000"
+                     viewBox="0 0 256 256">
+                    <path
+                        d="M248,200h-8a8,8,0,0,1-8-8V160a8,8,0,0,1,8-8h8a8,8,0,0,0,0-16h-8a24,24,0,0,0-24,24v8H199.2a40.09,40.09,0,0,0-33.71-31.61L129.44,49.85A16,16,0,0,0,114.67,40H24A16,16,0,0,0,8,56v96a40,40,0,0,0,32,64H160a40.07,40.07,0,0,0,39.2-32H216v8a24,24,0,0,0,24,24h8a8,8,0,0,0,0-16ZM148,136H64V56h50.67ZM48,56v80H40a39.72,39.72,0,0,0-16,3.35V56ZM160,200H40a24,24,0,0,1,0-48H160a24,24,0,0,1,0,48Zm8-24a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H160A8,8,0,0,1,168,176Z"></path>
+                </svg>
+                <div className={'capitalize text-6xl text-center px-10 lg:text-7xl font-light'}>the website is under
+                    construction
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 const Banner = ({src}: { src: string }) => {
@@ -39,10 +61,13 @@ const ContactUs = () => {
                 <div className={'font-medium text-2xl my-10'}>
                     <p>Get in touch with us today!</p>
                     <p>
-                        You can reach us via email at <b className={'font-bold inline-block bg-blue-300 rounded px-2 py-1'}>info@ramexco.com</b>
+                        You can reach us via email at <b
+                        className={'font-bold inline-block bg-blue-300 rounded px-2 py-1'}>info@ramexco.com</b>
                     </p>
                     <p className={'mt-4'}>
-                        For any inquiries or issues related to our mail server, including abuse, technical support, or other concerns, please contact us at <b className={'font-bold inline-block bg-rose-400 rounded px-2 py-1'}>postmaster@ramexco.com</b>.
+                        For any inquiries or issues related to our mail server, including abuse, technical support, or
+                        other concerns, please contact us at <b
+                        className={'font-bold inline-block bg-rose-400 rounded px-2 py-1'}>postmaster@ramexco.com</b>.
                     </p>
                 </div>
             </div>
@@ -56,12 +81,18 @@ const Services = () => {
             <h2 className={"text-7xl font-light uppercase"}>
                 Our Services
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-5 my-20 bg-slate-300 border gap-[1px] border-slate-300">
-                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Sea Freight'} icon={<SeaIcon/>}/>
-                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Air Cargo'} icon={<SkyIcon/>}/>
-                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Land Transport'} icon={<LandIcon/>}/>
-                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'} title={'customs brokerage'} icon={<CalcIcon/>}/>
-                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'} title={'logistics consultancy'} icon={<ShakeIcon/>}/>
+            <div
+                className="grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-5 my-20 bg-slate-300 border gap-[1px] border-slate-300">
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Sea Freight'}
+                             icon={<SeaIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'} title={'Air Cargo'}
+                             icon={<SkyIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-square lg:col-span-2 xl:col-span-1'}
+                             title={'Land Transport'} icon={<LandIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'}
+                             title={'customs brokerage'} icon={<CalcIcon/>}/>
+                <ServiceItem className={'aspect-[2] lg:aspect-[2] xl:aspect-square lg:col-span-3 xl:col-span-1'}
+                             title={'logistics consultancy'} icon={<ShakeIcon/>}/>
             </div>
             <div className={'font-medium text-2xl my-10'}>
                 Our diverse range of services includes sea freight, land transport, air cargo, customs brokerage, and
@@ -100,7 +131,7 @@ const NetworkItem = ({title, icon}: { title: string, icon: ReactNode }) => {
 }
 
 
-const ServiceItem = ({className= '', title, icon}: {className?: string, title: string, icon: ReactNode }) => {
+const ServiceItem = ({className = '', title, icon}: { className?: string, title: string, icon: ReactNode }) => {
     return <div
         className={`relative bg-white p-6 flex flex-col items-center justify-center space-y-6 ${className}`}>
         {icon}
